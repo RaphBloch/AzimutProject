@@ -13,7 +13,6 @@ DB_HOST = os.getenv("DB_HOST", "localhost")
 
 
 
-print("Connect as:", DB_USER, DB_PASSWORD, DB_NAME)
 
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 

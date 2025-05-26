@@ -1,10 +1,12 @@
 import asyncio
 import random
 from fastapi import WebSocket, APIRouter
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 from DAL.db import SessionLocal
 from models.target import Target
 from datetime import datetime, timezone
+from starlette.websockets import WebSocketDisconnect
 
 ws_router = APIRouter()
 
@@ -41,6 +43,9 @@ async def stream(websocket: WebSocket):
             await websocket.send_json({"updated_targets": updates})
             db.close()
             await asyncio.sleep(3)
+
+
+    except WebSocketDisconnect:
+        print("WebSocket closed by client.")
     except Exception as e:
-        print(f"WebSocket fermé : {e}")
-        await websocket.close()
+        print(f"Unexpected error: {e}")
