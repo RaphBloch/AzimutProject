@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Target } from "../types/target";
+import { API_URLS } from "../constants/api";
 
-type Target = {
-  id: number;
-  lat: number;
-  lon: number;
-  type: string;
-  threat_level: string;
-  updated_at: string;
-};
 
-const API_URL = "http://127.0.0.1:8000/targets";
-const WS_URL = "ws://127.0.0.1:8000/stream";
 
-const TargetsMap: React.FC = () => {
+
+const TargetsMap =  () => {
   const [targets, setTargets] = useState<Target[]>([]);
 
   // Initial fetch
   useEffect(() => {
-    fetch(API_URL)
+    fetch(API_URLS.targets)
       .then((res) => res.json())
       .then((data) => setTargets(data))
       .catch((err) => console.error("Erreur chargement initial :", err));
@@ -25,7 +18,7 @@ const TargetsMap: React.FC = () => {
 
   //  WebSocket connection
   useEffect(() => {
-    const ws = new WebSocket(WS_URL);
+    const ws = new WebSocket(API_URLS.stream);
 
     ws.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
