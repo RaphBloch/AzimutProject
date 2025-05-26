@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: azimut_postgres
+    environment:
+      POSTGRES_USER: raphael
+      POSTGRES_PASSWORD: Rahel2102!
+      POSTGRES_DB: azimut_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./AzimutServer
+    container_name: azimut_api
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    environment:
+      DB_USER: raphael
+      DB_PWD: Rahel2102!
+      DB_NAME: azimut_db
+      DB_HOST: db
+    volumes:
+      - ./AzimutServer:/app
+
+volumes:
+  pgdata:

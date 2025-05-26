@@ -1,0 +1,15 @@
+AzimutServer/*/__pycache__/
+AzimutServer/__pycache__/
+AzimutServer/*.pyc
+AzimutServer/.env
+AzimutServer/.venv/
+AzimutServer/.idea
+
+# Node
+azimut_client/node_modules/
+azimut_client/.env.local
+azimut_client/.next/
+azimut_client/build/
+
+# Docker
+pgdata/
