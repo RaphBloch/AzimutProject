@@ -28,21 +28,21 @@ services:
       DB_HOST: db
     volumes:
       - ./AzimutServer:/app
-  client:
-    build:
-      context: ./azimut_client
-    container_name: azimut_front
-    ports:
-      - "3000:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    volumes:
-      - ./azimut_client:/app
-      - /app/node_modules
-    working_dir: /app
-    command: ["npm", "start"]
-    depends_on:
-      - api
+  # client:
+  #   build:
+  #     context: ./azimut_client
+  #   container_name: azimut_front
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   volumes:
+  #     - ./azimut_client:/app
+  #     - /app/node_modules
+  #   working_dir: /app
+  #   command: ["npm", "start"]
+  #   depends_on:
+  #     - api
 
 volumes:
   pgdata:
