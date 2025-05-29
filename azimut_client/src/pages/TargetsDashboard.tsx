@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Target } from "@/types/target";
-import { TargetTable } from "./TargetTable";
+import { TargetTable } from "../components/TargetTable";
 import { API_URLS } from "../constants/api";
-import  TargetsMap  from "./MapView";
+import  TargetsMap  from "../components/MapView";
 
 export const TargetsDashboard = () => {
   const [targets, setTargets] = useState<Target[]>([]);
@@ -16,7 +16,7 @@ export const TargetsDashboard = () => {
         const data = await res.json();
         setTargets(data);
       } catch (err) {
-        console.error("Erreur chargement initial :", err);
+        console.error("Error of initial loading :", err);
       }
     };
     fetchTargets();
@@ -34,7 +34,7 @@ export const TargetsDashboard = () => {
           prev.map((t) => updated_targets.find((u: Target) => u.id === t.id) ?? t)
         );
       } catch (err) {
-        console.error("Erreur WebSocket :", err);
+        console.error("Error WebSocket :", err);
       }
     };
     ws.onerror = (e) => console.error("❌ WebSocket error:", e);
@@ -49,7 +49,7 @@ export const TargetsDashboard = () => {
         <TargetTable targets={targets} onSelect={setSelectedTarget}  />
       </div>
       <div style={{ width: "50%" }}>
-       
+       <TargetsMap targets={targets}  selectedTarget={selectedTarget} />
       </div>
     </div>
   );

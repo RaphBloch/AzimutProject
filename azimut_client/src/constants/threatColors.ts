@@ -1,3 +1,8 @@
+/**
+ * Mapping of threat levels to their corresponding color codes.
+ * 
+ * Used for UI color indicators such as badges or markers.
+ */
 export const threatColors: Record<string, string> = {
   safe: "#38a169",        // green
   suspect: "#d69e2e",     // yellow

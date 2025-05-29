@@ -1,14 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
-import TargetsMap from './components/TargetsMap';
+import {TargetsDashboard} from './pages/TargetsDashboard';
 import './App.css';
 
 function App() {
   return (
-     <div className="App">
-      <h1>⚓ Azimut Monitoring</h1>
-      <TargetsMap />
-    </div>
+      <main className="App">
+      <TargetsDashboard />
+    </main>
   );
 }
 
