@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { TargetTable } from "../components/TargetTable";
 import { Target } from "../types/target";
+import { ThreatBadge } from "../components/ThreatBadge";
 
 const mockTargets: Target[] = [
   {
@@ -23,7 +24,7 @@ describe("TargetTable", () => {
 
     // Check if badge text is correct
     expect(screen.getByText("dangerous")).toBeInTheDocument();
-  });
+  });  
 
   it("calls onSelect when row is clicked", () => {
     const handleSelect = jest.fn();
@@ -32,6 +33,11 @@ describe("TargetTable", () => {
 
     fireEvent.click(screen.getByText("yacht"));
 
-    // expect(handleSelect).toHaveBeenCalledWith(1); // ID of the selected target
+    expect(handleSelect).toHaveBeenCalledWith(mockTargets[0]); // ID of the selected target
   });
+
+  it("renders empty state when no targets are provided", () => {
+  render(<TargetTable targets={[]} onSelect={() => {}} />);
+  expect(screen.queryByText("yacht")).not.toBeInTheDocument();
+});
 });
