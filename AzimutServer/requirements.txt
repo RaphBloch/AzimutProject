@@ -6,4 +6,6 @@ psycopg2-binary
 python-dotenv
 pytest
 httpx
+pydantic
+pydantic_settings
 starlette>=0.36.0
