@@ -79,7 +79,7 @@ Responsive table and map with color-coded threat levels
 
 First we mount only the container of the  DB for the integration test of the DB
 docker-compose up -d db 
-Replace the db_name and db_password with your credentials and then launch 
+Replace the db_name and db_password with your credentials and then launch  Also check if you did mapping in the the init of the DB container
 cd AzimutServer
 py integration_test.py
 
@@ -88,12 +88,14 @@ py integration_test.py
 First we mount only the container of the  DB for the API tests
 docker-compose up -d db 
 cd AzimutServer
+pip install -r requirements.txt
 pytest tests/test_targets.py
 
 
 3. **Run React Components tests using**
 
 cd azimut_client
+npm install
 npm test -- src/__tests__/TargetTable.test.tsx src/__tests__/ThreatBadge.test.tsx
 
 

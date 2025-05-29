@@ -9,6 +9,7 @@ services:
       POSTGRES_PASSWORD: xxxx
       POSTGRES_DB: azimut_db
     ports:
+      # if port 5432 is already used then we must  do mapping as  "54321:5432" -> only update integration test 
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -35,7 +36,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_BASE=http://localhost:8000
     volumes:
       - ./azimut_client:/app
       - /app/node_modules
