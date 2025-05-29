@@ -27,14 +27,16 @@ The frontend is developed with **React**, which offers:
 Make sure you have:
 - Docker
 - Docker Compose
+- Pytest for API test
+- npm for React Component Test 
 
 ### Steps to Launch
 
 1. **Clone the repository**
 
 In a powershell or cmd line:
-    git clone https://github.com/RaphBloch/AzimutProject.git
-    cd AzimutProject
+git clone https://github.com/RaphBloch/AzimutProject.git
+cd AzimutProject
 
 
 2. **Start all services**
@@ -73,7 +75,16 @@ Responsive table and map with color-coded threat levels
 ## 🚀 Running the Tests (via Docker Compose)
 
 
+1. **Run API tests using**
 
-1 .**Run React tests using**
+First we mount only the container of the  DB for the API tests
+docker-compose up -d db 
+cd AzimutServer
+pytest tests/test_targets.py
 
-docker-compose exec client npm test
+
+2 .**Run React Components tests using**
+
+cd azimut_client
+npm test -- src/__tests__/TargetTable.test.tsx src/__tests__/ThreatBadge.test.tsx
+
