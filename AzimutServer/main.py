@@ -27,10 +27,11 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)  # Create tables at the launch of the API Server
 
 
-#Add global middleware to protect from XSS
+# Add global middleware to protect from XSS
 app.add_middleware(SanitizeQueryMiddleware)
 
 
+# Add middleware to ensure querystring is empty for some routes
 app.add_middleware(
     EnforceNoQueryMiddleware,
     protected_paths=["/targets"],  # You can add more routes as needed
