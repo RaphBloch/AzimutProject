@@ -11,8 +11,8 @@ def generate_targets(n=25):
     return [
         Target(
             id=i,
-            lat=round(random.uniform(0, 10), 4),
-            lon=round(random.uniform(0, 10), 4),
+            lat=round(random.uniform(27, 33), 4),
+            lon=round(random.uniform(27, 33), 4),
             type=random.choice(TYPES),
             threat_level=random.choice(THREATS),
             updated_at=datetime.utcnow()

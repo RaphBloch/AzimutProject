@@ -19,8 +19,8 @@ def mutate_targets(db: Session, count: int = 3):
 
     updated = []
     for target in targets:
-        target.lat = round(random.uniform(0, 10), 4)
-        target.lon = round(random.uniform(0, 10), 4)
+        lat=round(random.uniform(27, 33), 4),
+        lon=round(random.uniform(27, 33), 4),
         target.threat_level = random.choice(THREATS)
         target.updated_at = datetime.now(timezone.utc)
         updated.append({
