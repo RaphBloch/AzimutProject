@@ -1,5 +1,6 @@
 AzimutServer/*/__pycache__/
 AzimutServer/__pycache__/
+AzimutServer/__pycache__/*
 AzimutServer/*.pyc/
 AzimutServer/.env
 AzimutServer/.venv/

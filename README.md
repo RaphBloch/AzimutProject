@@ -1,10 +1,10 @@
-# Azimut – Live Maritime Target Dashboard
+# Azimut – Live Maritime Targets Dashboard
 
 A responsive web application that visualizes real-time maritime targets with location data, status badges, and an interactive map.
 
 ---
 
-## 🧠 Technology Choices
+##  Technology Choices
 
 ### 🐘 PostgreSQL (Database)
 We chose **PostgreSQL** for its robust support for geospatial data, transactional integrity, and ease of integration with Python backends. It's open source, widely supported, and efficient for both development and production use cases.
@@ -72,10 +72,18 @@ Fetches and displays real-time maritime targets
 Responsive table and map with color-coded threat levels
 
 
-## 🚀 Running the Tests (via Docker Compose)
+##  Running the Tests 
 
 
-1. **Run API tests using**
+1. **Test DB Connection**
+
+First we mount only the container of the  DB for the integration test of the DB
+docker-compose up -d db 
+Replace the db_name and db_password with your credentials and then launch 
+cd AzimutServer
+py integration_test.py
+
+2. **Run API tests using**
 
 First we mount only the container of the  DB for the API tests
 docker-compose up -d db 
@@ -83,8 +91,35 @@ cd AzimutServer
 pytest tests/test_targets.py
 
 
-2 .**Run React Components tests using**
+3. **Run React Components tests using**
 
 cd azimut_client
 npm test -- src/__tests__/TargetTable.test.tsx src/__tests__/ThreatBadge.test.tsx
 
+
+##  Next Steps
+
+I think next steps for this project must be around security and alerting processes: 
+🔐 Authentication and Authorization
+The next phase will involve implementing a login system to ensure access control over both API and frontend routes. This will include:
+
+User authentication using JWT or OAuth2.
+
+Role-based access control (RBAC) to restrict access to sensitive endpoints.
+
+Securing WebSocket streams so that only authenticated users can receive live updates.
+
+Middlewares will be added to the corresponding routes 
+
+🚨 Real-Time Alerting on Threat Escalation
+To enhance operational readiness, we plan to introduce an alerting mechanism that triggers when a target’s threat_level becomes "dangerous". Key features will include:
+
+Optional email or push notification integration for responsible personnel.
+
+Logic to debounce or throttle notifications if the same threat escalates repeatedly in a short time.
+
+
+Agentic AI Integration : 
+We can think about building AI Agent that will automate the alert task when it is necessary  and could suggest or trigger predefined safety protocols
+
+All These improvements aim to make the platform secure, scalable, and actionable in real-time.
