@@ -3,6 +3,8 @@ import random
 from fastapi import WebSocket, APIRouter
 from sqlalchemy import func
 from sqlalchemy.orm import Session
+from starlette import status
+
 from DAL.db import SessionLocal
 from models.target import Target
 from datetime import datetime, timezone
@@ -17,8 +19,8 @@ def mutate_targets(db: Session, count: int = 3):
 
     updated = []
     for target in targets:
-        target.lat = round(random.uniform(0, 100), 4)
-        target.lon = round(random.uniform(0, 100), 4)
+        target.lat = round(random.uniform(0, 10), 4)
+        target.lon = round(random.uniform(0, 10), 4)
         target.threat_level = random.choice(THREATS)
         target.updated_at = datetime.now(timezone.utc)
         updated.append({
@@ -35,6 +37,11 @@ def mutate_targets(db: Session, count: int = 3):
 
 @ws_router.websocket("/stream")
 async def stream(websocket: WebSocket):
+    #  Query string is forbidden on the socket
+    if websocket.url.query:
+        # Close the connection immediately
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        return
     await websocket.accept()
     try:
         while True:

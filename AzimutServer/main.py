@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from DAL.db import Base, engine
 from api.routes import api_router
 from api.websocket import ws_router
+from middlewares.query_protection import EnforceNoQueryMiddleware
+from middlewares.security import SanitizeQueryMiddleware
 
 app = FastAPI()
 
@@ -22,11 +24,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-Base.metadata.create_all(bind=engine)  # Crée les tables au lancement
+Base.metadata.create_all(bind=engine)  # Create tables at the launch of the API Server
 
-(app.
-# Routes REST
- include_router(api_router))
+
+#Add global middleware to protect from XSS
+app.add_middleware(SanitizeQueryMiddleware)
+
+
+app.add_middleware(
+    EnforceNoQueryMiddleware,
+    protected_paths=["/targets"],  # You can add more routes as needed
+)
+
+#Routes REST
+app.include_router(api_router)
 
 # WebSocket
 app.include_router(ws_router)
