@@ -98,7 +98,10 @@ cd azimut_client
 npm install
 npm test -- src/__tests__/TargetTable.test.tsx src/__tests__/ThreatBadge.test.tsx
 
-
+# Last work 
+There is a **CI GitHub action** :
+- create postresql service and test the API 
+- run React components's tests
 
 
 ##  Next Steps
