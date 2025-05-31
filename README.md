@@ -57,7 +57,7 @@ The client depends on api container and when api has started the client is launc
 
 4. **Server**
 
-FastAPI is exposed at http://localhost:8000
+FastAPI is exposed at http://localhost:8000 (used as environment variable in the client's container)
 
 REST endpoint: GET /targets
 
@@ -79,13 +79,13 @@ Responsive table and map with color-coded threat levels
 
 First we mount only the container of the  DB for the integration test of the DB
 docker-compose up -d db 
-Replace the db_name and db_password with your credentials and then launch  Also check if you did mapping in the the init of the DB container
+Replace the db_name and db_password with your credentials (that you defined in the definition of the DB container) and then launch  Also check if you did mapping in the the init of the DB container 
 cd AzimutServer
 py integration_test.py
 
 2. **Run API tests using**
 
-First we mount only the container of the  DB for the API tests
+First we mount only the container of the DB for the API tests
 docker-compose up -d db 
 cd AzimutServer
 pip install -r requirements.txt
@@ -97,6 +97,8 @@ pytest tests/test_targets.py
 cd azimut_client
 npm install
 npm test -- src/__tests__/TargetTable.test.tsx src/__tests__/ThreatBadge.test.tsx
+
+
 
 
 ##  Next Steps
@@ -121,7 +123,9 @@ Optional email or push notification integration for responsible personnel.
 Logic to debounce or throttle notifications if the same threat escalates repeatedly in a short time.
 
 
-Agentic AI Integration : 
+## Agentic AI Integration : 
 We can think about building AI Agent that will automate the alert task when it is necessary  and could suggest or trigger predefined safety protocols
 
 All These improvements aim to make the platform secure, scalable, and actionable in real-time.
+
+

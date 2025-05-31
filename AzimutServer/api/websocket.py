@@ -14,6 +14,8 @@ ws_router = APIRouter()
 
 THREATS = ["safe", "suspect", "dangerous", "distress"]
 
+
+# function to update randomly some targets in the DB and then in the socket
 def mutate_targets(db: Session, count: int = 3):
     targets = db.query(Target).order_by(func.random()).limit(count).all()
 

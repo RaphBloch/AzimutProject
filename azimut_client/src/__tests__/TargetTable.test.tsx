@@ -33,7 +33,7 @@ describe("TargetTable", () => {
 
     fireEvent.click(screen.getByText("yacht"));
 
-    expect(handleSelect).toHaveBeenCalledWith(mockTargets[0]); // ID of the selected target
+    expect(handleSelect).toHaveBeenCalledWith(mockTargets[0]); 
   });
 
   it("renders empty state when no targets are provided", () => {

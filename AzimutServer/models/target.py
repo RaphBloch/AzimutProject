@@ -4,7 +4,6 @@ from DAL.db import Base
 
 class Target(Base):
     __tablename__ = "targets"
-
     id = Column(Integer, primary_key=True, index=True)
     lat = Column(Float, nullable=False)
     lon = Column(Float, nullable=False)

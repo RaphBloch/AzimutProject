@@ -12,8 +12,6 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    "https://example.com",
-    "https://www.example.com",
 ]
 
 app.add_middleware(
@@ -34,7 +32,7 @@ app.add_middleware(SanitizeQueryMiddleware)
 # Add middleware to ensure querystring is empty for some routes
 app.add_middleware(
     EnforceNoQueryMiddleware,
-    protected_paths=["/targets"],  # You can add more routes as needed
+    protected_paths=["/targets"],  # We can add more routes as needed
 )
 
 #Routes REST

@@ -12,6 +12,8 @@ def get_db():
     finally:
         db.close()
 
+
+# Route to get all the targets
 @api_router.get("/targets")
 def read_users(db: Session = Depends(get_db)):
     return crud.get_targets(db)
