@@ -54,7 +54,7 @@ jobs:
           DB_USER: postgres
           DB_PWD: postgres
           DB_NAME: azimut_db
-          DB_HOST : postgres
+          DB_HOST : localhost
         run: pytest tests/test_targets.py
 
   client-tests:
