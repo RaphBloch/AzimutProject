@@ -127,7 +127,7 @@ Logic to debounce or throttle notifications if the same threat escalates repeate
 
 
 ## Agentic AI Integration : 
-We can think about building AI Agent that will automate the alert task when it is necessary  and could suggest or trigger predefined safety protocols
+We can think about building AI Agent that will automate the alert task when it is necessary and could suggest or trigger predefined safety protocols
 
 All These improvements aim to make the platform secure, scalable, and actionable in real-time.
 
